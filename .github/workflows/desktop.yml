@@ -52,19 +52,19 @@ jobs:
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}/test.desktop-deployments/lib
+      working-directory: ${{ github.workspace }}
     - name: Build test release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}/test.desktop-deployments/lib
+      working-directory: ${{ github.workspace }}
     - name: Build file_selector implementations debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}/test.desktop-deployments/init_dsktp_plugin
+      working-directory: ${{ github.workspace }}
     - name: Build file_selector implementations release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}/test.desktop-deployments/init_dsktp_plugin
+      working-directory: ${{ github.workspace }}
