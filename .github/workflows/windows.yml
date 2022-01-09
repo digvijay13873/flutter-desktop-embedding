@@ -1,0 +1,45 @@
+name: windows	
+
+on: [push, pull_request]	
+
+jobs:	
+  build:	
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ windows-2019 ]
+        include: 
+        - os: windows-2019
+          TARGET: windows
+      # Disable fail-fast; we want results from all OSes even if one fails.
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2	
+      with:
+        path: fde
+    - uses: actions/checkout@v2	
+      with:	
+        path: flutter
+        repository: flutter/flutter	
+        ref: main	
+        fetch-depth: 0
+    - name: Add Flutter to path - Windows
+      if: startsWith(matrix.os, 'windows')
+      run: echo "$env:GITHUB_WORKSPACE\flutter\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append')
+    - name: Enable desktop support	
+      run: |
+        flutter config --enable-windows-desktop	
+    - name: Doctor
+      run: flutter doctor -v
+    - name: Build debug	
+      run: |	
+        flutter packages get
+        flutter build -v ${{matrix.TARGET}} --debug	
+      working-directory: ${{ github.workspace }}/fde/lib/windows
+    - name: Build test release	
+      run: |	
+        flutter packages get	
+        flutter build -v ${{matrix.TARGET}} --release	
+      working-directory: ${{ github.workspace }}/fde/lib/windows
+     
