@@ -52,22 +52,22 @@ jobs:
     - name: Doctor
       # Run doctor, for ease of debugging any issues.
       run: flutter doctor -v
-    - name: Build testbed debug	
+    - name: Build lib debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
       working-directory: ${{ github.workspace }}/fde/lib
-    - name: Build testbed release	
+    - name: Build lib release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
       working-directory: ${{ github.workspace }}/fde/lib
-    - name: Build file_selector implementations debug	
+    - name: Build plugins debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
       working-directory: ${{ github.workspace }}/fde/plugins/file_selector/example	
-    - name: Build file_selector implementations release	
+    - name: Build plugins release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
