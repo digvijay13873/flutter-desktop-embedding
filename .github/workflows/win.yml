@@ -1,4 +1,4 @@
-name: CI	
+name: windows	
 
 on: [push, pull_request]	
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-10.15, windows-2019, ubuntu-18.04]
+        os: [windows-2019]
         include: 
         - os: macOS-10.15
           TARGET: macos  
