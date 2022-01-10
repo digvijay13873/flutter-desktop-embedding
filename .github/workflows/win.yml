@@ -8,11 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-2019]
-        include: 
-        - os: macOS-10.15
-          TARGET: macos  
-        - os: ubuntu-18.04
-          TARGET: linux     
+        include:     
         - os: windows-2019
           TARGET: windows
       # Disable fail-fast; we want results from all OSes even if one fails.
